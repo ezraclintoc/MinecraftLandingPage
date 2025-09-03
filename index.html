@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Challenge Minecraft Server</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-gray-900 text-white">
+    <!-- Navbar -->
+    <nav class="sticky-top bg-gray-800 p-4 flex justify-between items-center">
+        <div class="text-2xl font-bold">Challenge</div>
+        <div class="space-x-4">
+            <a href="#home" class="hover:text-yellow-400">Home</a>
+            <a href="#map" class="hover:text-yellow-400">Server Map</a>
+            <a href="mods.html" class="hover:text-yellow-400">Mods List</a>
+            <a href="#connect" class="hover:text-yellow-400">How to Connect</a>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header id="home" class="relative h-96 bg-cover bg-center"
+        style="background-image: url('images/HeaderBackground.jpg')">
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+            <h1 class="text-5xl font-bold text-yellow-400">
+                Challenge Minecraft Server
+            </h1>
+        </div>
+    </header>
+
+    <div id="timers">
+        <section id="timer" class="p-8 bg-gray-800">
+            <h2 id="countdown-header" class="text-3xl font-bold mb-4">
+                The Next Season Starts in:
+            </h2>
+            <div id="countdown" class="text-4xl font-mono"></div>
+        </section>
+
+        <section id="end-timer" class="p-8 bg-gray-800">
+            <h2 id="end-timer-header" class="text-3xl font-bold mb-4">
+                The End opens in:
+            </h2>
+            <div id="end-timer-countdown" class="text-4xl font-mono"></div>
+        </section>
+
+        <script>
+            var countDownDate = new Date("Sep 9, 2025 17:00:00 CST");
+            var endCountDownDate = new Date("Sep 16, 2025 17:00:00 CST");
+            var countdownElement = document.getElementById("countdown");
+            var countdownHeader = document.getElementById("countdown-header");
+            var endCountdownElement = document.getElementById("end-timer-countdown");
+            var endCountdownHeader = document.getElementById("end-timer-header");
+
+            document.getElementById("end-timer").style.display = "none";
+
+            var x = setInterval(function () {
+                var now = new Date().getTime();
+                var distance = countDownDate - now;
+
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor(
+                    (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                );
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownElement.innerHTML =
+                    "<h3 class='text-5xl font-light'>" +
+                    days +
+                    ":" +
+                    hours +
+                    ":" +
+                    minutes +
+                    ":" +
+                    seconds +
+                    "</h3>";
+                countdownElement.innerHTML +=
+                    "<p class='text-xs'>Days : Hours : Minutes : Seconds</p>";
+                countdownElement.innerHTML +=
+                    "<p class='text-xs'>The Next season starts on September 9th 5:00 PM CST</p>";
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    countdownHeader.innerHTML = "The Season Has Started!";
+                    countdownElement.innerHTML =
+                        "<h3 class='text-3xl font-light'>What are you waiting for? Play Now!</h3>";
+
+                    document.getElementById("end-timer").style.display = "block";
+
+                    var y = setInterval(function () {
+                        var now = new Date().getTime();
+                        var endDistance = endCountDownDate - now;
+
+                        var endDays = Math.floor(endDistance / (1000 * 60 * 60 * 24));
+                        var endHours = Math.floor(
+                            (endDistance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+                        );
+                        var endMinutes = Math.floor(
+                            (endDistance % (1000 * 60 * 60)) / (1000 * 60)
+                        );
+                        var endSeconds = Math.floor((endDistance % (1000 * 60)) / 1000);
+
+                        endCountdownElement.innerHTML =
+                            "<h3 class='text-5xl font-light'>" +
+                            endDays +
+                            ":" +
+                            endHours +
+                            ":" +
+                            endMinutes +
+                            ":" +
+                            endSeconds +
+                            "</h3>";
+                        endCountdownElement.innerHTML +=
+                            "<p class='text-xs'>Days : Hours : Minutes : Seconds</p>";
+                        endCountdownElement.innerHTML +=
+                            "<p class='text-xs'>The End opens on September 16th 5:00 PM CST</p>";
+
+                        if (endDistance < 0) {
+                            clearInterval(y);
+                            endCountdownHeader.innerHTML = "The End is Open!";
+                            endCountdownElement.innerHTML =
+                                "<h3 class='text-3xl font-light'>The End is Open. Go explore the End dimension!</h3>";
+                        }
+                    }, 1000);
+                    
+                }
+            }, 1000);
+        </script>
+    </div>
+
+    <section id="rules" class="p-8 bg-gray-800">
+        <h2 class="text-3xl font-bold mb-4">Server Rules</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-2xl font-semibold mb-2">What is allowed</h3>
+                <ul>
+                    <li>Killing is allowed</li>
+                    <li>Griefing is allowed</li>
+                    <li>Stealing is allowed</li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold mb-2">What is NOT allowed</h3>
+                <ul>
+                    <li>Language is not allowed</li>
+                    <li>X-Ray is not allowed</li>
+                    <li>Hacking is not allowed</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Connect -->
+    <section id="connect" class="p-8 bg-gray-800">
+        <h2 class="text-3xl font-bold mb-4">How to Connect</h2>
+        <div class="grid md:grid-cols-2 gap-8">
+            <div>
+                <h3 class="text-2xl font-semibold mb-2">Java Edition</h3>
+                <p>
+                    1. Open Minecraft Java Edition.<br />
+                    2. Click "Multiplayer" → "Add Server".<br />
+                    3. Enter
+                    <i style="color: black; background-color: yellow">minecraft.ezra.is-a.dev</i>
+                    as <br />
+                    the server address and connect.
+                </p>
+            </div>
+            <div>
+                <h3 class="text-2xl font-semibold mb-2">Bedrock Edition (Geyser)</h3>
+                <p>
+                    1. Open Minecraft Bedrock Edition.<br />
+                    2. Click "Play" → "Servers" → "Add Server".<br />
+                    3. Enter
+                    <i style="color: black; background-color: yellow">minecraft.ezra.is-a.dev</i>
+                    as <br />
+                    the server address and connect.*
+                </p>
+            </div>
+        </div>
+        <p class="mt-4 text-sm italic">
+            *Note: Keep the port as 19132 for bedrock edition.
+        </p>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 p-4 text-center text-gray-400">
+        &copy; 2025 Challenge Minecraft Server | Created by Ezra
+    </footer>
+</body>
+
+</html>
